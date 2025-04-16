@@ -1,24 +1,58 @@
-import { useState } from 'react'
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from '../baitap/Redux/CounterActions';
-import Usereducer from "../baitap/Usereducer"
+import React, { useState } from 'react';
+import Bai02 from "../baitap/TodoList";      // TodoList component
+import Bai03 from "../baitap/Toggle_Theme";  // ToggleTheme component
 
 function App() {
-  const count = useSelector((state) => state.count);
-  const dispatch = useDispatch();
+  const [selected, setSelected] = useState('counter'); // Mặc định hiển thị Counter
+
+  // style cho nút khi được chọn
+  const activeStyle = {
+    backgroundColor: "green",
+    color: "white",
+    fontWeight: "bold",
+  };
+
+  // style chung cho tất cả nút
+  const baseStyle = {
+    width: "120px",
+    height: "50px",
+    margin: "0 10px",
+    borderRadius: "5px",
+    border: "none",
+    cursor: "pointer",
+  };
 
   return (
     <>
-      <Usereducer></Usereducer>
+      <div style={{ textAlign: "center", marginTop: "20px" , border:"2px solid black" ,width:"500px", margin :"auto", borderRadius:"5px"}}>
+        <button
+          style={{ ...baseStyle, ...(selected === 'counter' ? activeStyle : {}) }}
+          onClick={() => setSelected('counter')}
+        >
+          Counter App
+        </button>
 
-      <div style={{ textAlign: 'center', marginTop: '100px' }}>
-        <h1>Counter: {count}</h1>
-        <button onClick={() => dispatch(increment())}>+</button>
-        <button onClick={() => dispatch(decrement())} style={{ marginLeft: '10px' }}>-</button>
+        <button
+          style={{ ...baseStyle, ...(selected === 'todo' ? activeStyle : {}) }}
+          onClick={() => setSelected('todo')}
+        >
+          TodoList
+        </button>
+
+        <button
+          style={{ ...baseStyle, ...(selected === 'theme' ? activeStyle : {}) }}
+          onClick={() => setSelected('theme')}
+        >
+          ToggleTheme
+        </button>
       </div>
+
+      {/* Hiển thị component tương ứng */}
+      {selected === 'counter' && <Bai02 />}
+      {selected === 'todo' && <Bai02 />}
+      {selected === 'theme' && <Bai03 />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
