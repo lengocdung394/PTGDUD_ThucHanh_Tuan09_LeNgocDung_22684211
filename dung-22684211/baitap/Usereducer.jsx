@@ -17,7 +17,7 @@ function Usereducer() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div style={{backgroundColor: "lightblue", width:"400px", borderRadius: "10px"}}>
+    <div style={{backgroundColor: "lightblue", width:"400px", borderRadius: "10px", margin: "auto",textAlign: 'center'}}>
       <h1>{state.count}</h1>
       <button style={{backgroundColor: "green",width:"100px"}} onClick={() => dispatch({ type: '+' })}>+</button>
       <button style={{backgroundColor: "red", width:"100px"}} onClick={() => dispatch({ type: '-' })}>-</button>
